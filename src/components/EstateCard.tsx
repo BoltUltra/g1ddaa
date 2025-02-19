@@ -5,7 +5,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { BsHouse } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
 
-const EstateCard = ({ estate, navigate }) => {
+const EstateCard = ({ estate, navigate }: { estate: any; navigate: any }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (

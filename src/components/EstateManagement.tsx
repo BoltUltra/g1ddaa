@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EstateDetails from "./EstateDetails";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,6 @@ const EstateManagement = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedEstateId, setSelectedEstateId] = useState<string | null>(null);
   const [display, setDisplay] = useState(false);
-  const [cardDetails, setCardDetails] = useState(false);
 
   const navigate = useNavigate();
 
@@ -82,10 +81,6 @@ const EstateManagement = () => {
 
   const howItWorks = () => {
     setDisplay(!display);
-  };
-
-  const showCardDetails = () => {
-    setCardDetails(!cardDetails);
   };
 
   return (

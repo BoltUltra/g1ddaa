@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const ExpandableDescription = ({ description }) => {
+const ExpandableDescription = ({ description }: { description: string }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const maxLength = 150;
 

@@ -27,7 +27,7 @@ interface City {
 }
 
 const CreateEstateForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     name: "",
     cityId: "",
     address: "",
@@ -223,9 +223,9 @@ const CreateEstateForm = () => {
     fetchCities();
   }, [selectedState]);
 
-  const handleinputChange = (e) => {
+  const handleinputChange = (e: any) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData((prev: any) => ({
       ...prev,
       [name]: value,
     }));

@@ -1,25 +1,24 @@
-"use client";
-
-import type React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { Loader2, PlusIcon } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import EstateImageUpload from "./EstateImageUpload";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import Slider from "react-slick";
 import { settings } from "@/lib/slider-settings.ts";
 import ExpandableDescription from "@/components/ExpandableDescription.tsx";
-import { BsArrowLeft, BsHouse, BsHouseAdd } from "react-icons/bs";
-import { GoChevronRight, GoEye } from "react-icons/go";
+import { BsArrowLeft, BsHouseAdd } from "react-icons/bs";
+import { GoChevronRight } from "react-icons/go";
 import { VscEdit } from "react-icons/vsc";
-import { FiEdit2 } from "react-icons/fi";
 import { MdOutlineDelete } from "react-icons/md";
-import { SlOptions, SlOptionsVertical } from "react-icons/sl";
+import { SlOptionsVertical } from "react-icons/sl";
 import { LuQrCode } from "react-icons/lu";
 import { RiShareForwardLine } from "react-icons/ri";
 
 interface Estate {
+  features: any;
+  landmark: string;
+  city: any;
   videoUrl: string | undefined;
   id: string;
   name: string;
@@ -33,6 +32,8 @@ interface Estate {
   longitude: number;
   latitude: number;
   images: {
+    type: string;
+    name: any;
     document: string;
   }[];
 }

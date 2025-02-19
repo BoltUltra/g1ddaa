@@ -223,11 +223,7 @@ const CreateEstateForm = () => {
     fetchCities();
   }, [selectedState]);
 
-  const handleinputChange = (
-    e: React.ChangeEvent<
-      HTMLinputElement | HTMLTextAreaElement | HTMLselectElement
-    >,
-  ) => {
+  const handleinputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -626,7 +622,6 @@ const CreateEstateForm = () => {
               <div className="py-6 border-t border-gray-200 flex justify-center space-x-4 fixed bottom-0 w-full left-0 bg-[#F0F0F0]">
                 <button
                   type="button"
-                  variant="outline"
                   disabled={isLoading}
                   className="px-6 bg-white text-primary border border-primary py-2 rounded-full font-semibold"
                 >

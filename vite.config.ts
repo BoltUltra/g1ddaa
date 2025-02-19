@@ -10,12 +10,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    rollupOptions: {
-      onwarn(warning, warn) {
-        if (warning.code === "ESLINT_ERROR") return;
-        warn(warning);
-      },
-    },
-  },
 });

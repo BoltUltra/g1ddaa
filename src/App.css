@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --muted: 140 5% 95.9%;
+    --muted-foreground: 140 3.8% 46.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --border: 140 5.9% 90%;
+    --input: 140 5.9% 90%;
+
+    --primary: 147 72% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 4.8% 95.9%;
+    --secondary-foreground: 147 72% 20%;
+
+    --accent: 147 72% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 147 72% 20%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 147 72% 20%;
+    --chart-2: 147 62% 30%;
+    --chart-3: 147 52% 40%;
+    --chart-4: 147 42% 50%;
+    --chart-5: 147 32% 60%;
+  }
+
+  .dark {
+    --background: 147 72% 20%;
+    --foreground: 0 0% 98%;
+
+    --muted: 147 62% 15%;
+    --muted-foreground: 140 5% 64.9%;
+
+    --popover: 147 72% 20%;
+    --popover-foreground: 0 0% 98%;
+
+    --card: 147 72% 20%;
+    --card-foreground: 0 0% 98%;
+
+    --border: 147 62% 15%;
+    --input: 147 62% 15%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 147 72% 20%;
+
+    --secondary: 147 62% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 147 62% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 0 0% 83.9%;
+
+    --chart-1: 147 72% 60%;
+    --chart-2: 147 62% 70%;
+    --chart-3: 147 52% 80%;
+    --chart-4: 147 42% 90%;
+    --chart-5: 147 32% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-white text-foreground font-red-hat;
+  }
+}
+
+.transition__custom {
+  @apply transition-colors duration-500 ease-in-out
+}
+
+@font-face {
+  font-family: 'milik';
+  src: url("../public/fonts/Millik.otf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.milik {
+  font-family: 'milik';
+}
+
+.form-input{
+  @apply w-full rounded-full border p-3 focus:outline-primary
+}

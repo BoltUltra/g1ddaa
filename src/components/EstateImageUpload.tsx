@@ -80,7 +80,7 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
               extraProperties: null,
               revisionId: null,
             }),
-          },
+          }
         );
 
         if (!response.ok) {
@@ -121,7 +121,7 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="fixed bottom-8 right-8 h-16 w-16 rounded-full bg-primary/40 shadow-primary animate-pulse"
+        className="fixed bottom-8 right-8 h-16 w-16 rounded-full bg-primary/40 shadow-primary animate-pulse flex items-center justify-center"
       >
         <ImagePlus className="h-8 w-8" />
       </button>

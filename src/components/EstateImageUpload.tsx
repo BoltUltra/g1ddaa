@@ -46,6 +46,8 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
     setError(null);
     setIsUploading(true);
 
+    const toastId = toast.loading("Uploading image...");
+
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -88,7 +90,7 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
           throw new Error(errorData?.message || "Failed to upload image");
         }
 
-        toast.success("Image uploaded successfully");
+        toast.success("Image uploaded successfully", { id: toastId });
         onImageUploaded();
         setShowModal(false);
         resetForm();
@@ -103,7 +105,7 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
       const errorMessage =
         error instanceof Error ? error.message : "Error uploading image";
       setError(errorMessage);
-      toast.error(errorMessage);
+      toast.error(errorMessage, { id: toastId });
       console.error("Error uploading image:", error);
     } finally {
       setIsUploading(false);
@@ -171,20 +173,18 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
               </div>
 
               {error && <p className="text-red-500 text-sm">{error}</p>}
-
               <button
                 onClick={handleUpload}
                 disabled={isUploading || !file}
-                className="w-full px-6 bg-primary text-white py-2 rounded-full font-semibold border border-primary disabled:opacity-50 flex items-center justify-center gap-2" // added gap-2
+                className="w-full px-6 bg-primary text-white py-2 rounded-full font-semibold border border-primary disabled:opacity-50 flex items-center justify-center space-x-2"
               >
                 {isUploading ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin" />{" "}
-                    {/* adjusted size and removed mr-2 */}
+                  <div className="flex items-center justify-center space-x-2 w-full">
+                    <Loader2 className="h-5 w-5 animate-spin text-white" />
                     <span>Uploading...</span>
-                  </>
+                  </div>
                 ) : (
-                  "Upload Image"
+                  <span>Upload Image</span>
                 )}
               </button>
             </div>

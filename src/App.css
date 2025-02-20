@@ -104,8 +104,17 @@
 
 .milik {
   font-family: 'milik';
+  /*color: #fdf1dc;*/
 }
 
 .form-input{
   @apply w-full rounded-full border p-3 focus:outline-primary
+}
+
+.section{
+  @apply max-w-[1440px] mx-auto md:px-20 px-5
+}
+
+.card-shadow{
+  box-shadow: 4px 4px 0 0 #335F32, 3px 0 0 3px #335F32
 }

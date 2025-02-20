@@ -1,11 +1,12 @@
 /* eslint-disable */
-import React, { useState, useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 
 const PartnersSection = () => {
-  const [activeTab, setActiveTab] = useState("GOVERNMENT");
-  const scrollContainerRef = useRef(null);
+  const [activeTab, setActiveTab] =
+    useState<keyof typeof partnersByCategory>("GOVERNMENT");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const tabs = [
     "GOVERNMENT",
@@ -61,6 +62,7 @@ const PartnersSection = () => {
     }
   };
 
+  // @ts-ignore
   return (
     <div className="section py-16">
       <div className="text-center mb-12">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, ChevronDown, User } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { FaCaretDown } from "react-icons/fa";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import Currency from "@/components/Currency.tsx";
@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currency, setCurrency] = useState("USD");
   const [activeNav, setActiveNav] = useState("Shortlets");
   const navigate = useNavigate();
 
@@ -81,7 +80,9 @@ const Navbar = () => {
                 <button
                   onClick={() => setActiveNav(item.name)}
                   className={`px-1 py-2 text-sm flex items-center hover:text-primary relative
-                    ${activeNav === item.name ? "text-primary" : "text-gray-500"}`}
+                    ${
+                      activeNav === item.name ? "text-primary" : "text-gray-500"
+                    }`}
                 >
                   {item.name}
                   {item.hasDropdown && <FaCaretDown className="ml-1 h-4 w-4" />}
@@ -95,7 +96,7 @@ const Navbar = () => {
                 {item.hasDropdown && (
                   <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="py-1">
-                      {item.dropdownItems.map((dropdownItem) => (
+                      {item.dropdownItems?.map((dropdownItem) => (
                         <a
                           key={dropdownItem}
                           href="#"
@@ -157,7 +158,9 @@ const Navbar = () => {
                 <button
                   onClick={() => setActiveNav(item.name)}
                   className={`block px-3 py-2 text-base w-full text-left relative
-                    ${activeNav === item.name ? "text-primary" : "text-gray-700"}`}
+                    ${
+                      activeNav === item.name ? "text-primary" : "text-gray-700"
+                    }`}
                 >
                   <div className="flex justify-between items-center">
                     {item.name}
@@ -171,7 +174,7 @@ const Navbar = () => {
                 {/* Mobile Dropdown */}
                 {item.hasDropdown && activeNav === item.name && (
                   <div className="bg-gray-50 px-4 py-2">
-                    {item.dropdownItems.map((dropdownItem) => (
+                    {item.dropdownItems?.map((dropdownItem) => (
                       <a
                         key={dropdownItem}
                         href="#"

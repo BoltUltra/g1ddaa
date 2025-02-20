@@ -175,13 +175,14 @@ const EstateImageUpload: React.FC<EstateImageUploadProps> = ({
               <button
                 onClick={handleUpload}
                 disabled={isUploading || !file}
-                className="w-full px-6 bg-primary text-white py-2 rounded-full font-semibold border border-primary disabled:opacity-50 flex items-center justify-center"
+                className="w-full px-6 bg-primary text-white py-2 rounded-full font-semibold border border-primary disabled:opacity-50 flex items-center justify-center gap-2" // added gap-2
               >
                 {isUploading ? (
-                  <div className="flex items-center justify-center">
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <>
+                    <Loader2 className="h-5 w-5 animate-spin" />{" "}
+                    {/* adjusted size and removed mr-2 */}
                     <span>Uploading...</span>
-                  </div>
+                  </>
                 ) : (
                   "Upload Image"
                 )}

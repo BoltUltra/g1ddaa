@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const WhyGiddaa = () => {
   const [activeTab, setActiveTab] = useState("BUY");
@@ -70,10 +71,55 @@ const WhyGiddaa = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: {
+      opacity: 0,
+      y: -20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div className="pt-12 bg-cream-50">
+    <motion.div
+      className="pt-12 bg-cream-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="md:rounded-t-[210px] rounded-t-3xl pt-[2px] bg-gradient-to-r from-[#EAA315] to-[#335F32]">
-        <div
+        <motion.div
           className="md:rounded-t-[calc(210px-2px)] rounded-t-3xl md:pt-32 pt-20"
           style={{
             background:
@@ -81,54 +127,105 @@ const WhyGiddaa = () => {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="text-center mb-12">
+            <motion.div
+              className="text-center mb-12"
+              variants={titleVariants}
+              initial="hidden"
+              animate="visible"
+            >
               <h2 className="text-4xl font-bold text-[#2B5741] mb-4 milik">
                 Why Giddaa?
-                <span className="block h-1 w-24 bg-[#2B5741] mx-auto mt-2"></span>
+                <motion.span
+                  className="block h-1 w-24 bg-[#2B5741] mx-auto mt-2"
+                  initial={{ width: 0 }}
+                  animate={{ width: 96 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <motion.p
+                className="text-lg text-gray-600 max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
                 Reasons why you should embark on your real estate journey with
                 us, and our products..
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            {/* Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-16">
+            {/* Animated Tabs */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-2 mb-16"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {tabs.map((tab) => (
-                <button
+                <motion.button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`px-6 py-2 rounded-full text-sm transition-colors duration-200
-              ${
-                activeTab === tab
-                  ? "bg-[#2B5741] text-white"
-                  : "border border-[#2B5741] text-[#2B5741] hover:bg-[#2B5741]/10"
-              }`}
+                    ${
+                      activeTab === tab
+                        ? "bg-[#2B5741] text-white"
+                        : "border border-[#2B5741] text-[#2B5741] hover:bg-[#2B5741]/10"
+                    }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  variants={itemVariants}
                 >
                   {tab}
-                </button>
+                </motion.button>
               ))}
-            </div>
+            </motion.div>
 
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Animated Features Grid */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {features.map((feature) => (
-                <div
+                <motion.div
                   key={feature.id}
                   className="border-2 border-primary rounded-3xl p-8 hover:border-[#2B5741] transition-colors duration-200 h-[210px]"
+                  variants={itemVariants}
+                  whileHover={{
+                    scale: 1.03,
+                    transition: { duration: 0.2 },
+                  }}
                 >
-                  <div className="mb-6">{feature.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <motion.div
+                    className="mb-6"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  <motion.h3
+                    className="text-xl font-bold text-gray-900 mb-3"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     {feature.title}
-                  </h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
+                  </motion.h3>
+                  <motion.p
+                    className="text-gray-600"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {feature.description}
+                  </motion.p>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
+import { motion } from "framer-motion";
 
 const Products = () => {
   const products = [
@@ -57,61 +58,173 @@ const Products = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: {
+      opacity: 0,
+      y: -20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   const ProductCard = ({ product }: { product: any }) => {
     const isImageBottom = product.layout === "imageBottom";
 
     return (
-      <div
-        className={`card-shadow rounded-3xl overflow-hidden border-2 border-green-800 ${product.bgColor || "bg-white"}`}
+      <motion.div
+        variants={cardVariants}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.2 }}
+        className={`card-shadow rounded-3xl overflow-hidden border-2 border-green-800 ${
+          product.bgColor || "bg-white"
+        }`}
       >
         <div
-          className={`flex flex-col ${isImageBottom ? "h-full" : "lg:flex-row"}`}
+          className={`flex flex-col ${
+            isImageBottom ? "h-full" : "lg:flex-row"
+          }`}
         >
-          <div className="p-8 flex flex-col flex-grow">
-            <h3 className="text-2xl font-bold mb-4">{product.title}</h3>
-            <p className="text-gray-700 mb-6">{product.description}</p>
+          <motion.div
+            className="p-8 flex flex-col flex-grow"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <motion.h3
+              className="text-2xl font-bold mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {product.title}
+            </motion.h3>
+            <motion.p
+              className="text-gray-700 mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              {product.description}
+            </motion.p>
             <div className="flex flex-wrap gap-4 mt-auto">
-              <button className="bg-green-800 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors flex items-center">
+              <motion.button
+                className="bg-green-800 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 {product.primaryButton.text}
-                <BsFillArrowUpRightCircleFill size={22} className="ml-2" />
-              </button>
+                <motion.div
+                  className="ml-2"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <BsFillArrowUpRightCircleFill size={22} />
+                </motion.div>
+              </motion.button>
               {product.secondaryButton && (
-                <button className="border-2 border-green-800 text-green-800 px-6 py-2 rounded-full hover:bg-green-50 transition-colors">
+                <motion.button
+                  className="border-2 border-green-800 text-green-800 px-6 py-2 rounded-full hover:bg-green-50 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   {product.secondaryButton.text}
-                </button>
+                </motion.button>
               )}
             </div>
-          </div>
-          <div
-            className={`${isImageBottom ? "w-full h-64" : "w-full h-[300px]"} relative min-h-[200px]`}
+          </motion.div>
+          <motion.div
+            className={`${
+              isImageBottom ? "w-full h-64" : "w-full h-[300px]"
+            } relative min-h-[200px] overflow-hidden`}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
-            <img
+            <motion.img
               src={product.imageUrl}
               alt={product.title}
               className="w-full h-full object-cover"
+              initial={{ scale: 1.2 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6 }}
             />
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
   return (
-    <div className="section py-12">
-      <div className="text-center mb-12">
+    <motion.div
+      className="section py-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.div
+        className="text-center mb-12"
+        variants={titleVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <h2 className="text-3xl font-bold text-green-800 milik">Products</h2>
-        <div className="h-1 bg-primary w-24 rounded-full mx-auto mb-5" />
-        <p className="text-gray-600 max-w-sm mx-auto">
+        <motion.div
+          className="h-1 bg-primary w-24 rounded-full mx-auto mb-5"
+          initial={{ width: 0 }}
+          animate={{ width: 96 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        />
+        <motion.p
+          className="text-gray-600 max-w-sm mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
           Get started with one of our carefully crafted products & services.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {products.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

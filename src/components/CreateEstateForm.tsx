@@ -7,6 +7,7 @@ import { Loader2 } from "lucide-react";
 import Layout from "@/components/Layout.tsx";
 import { BsArrowLeft } from "react-icons/bs";
 import { GoChevronRight } from "react-icons/go";
+import toast from "react-hot-toast";
 
 interface Country {
   code: string;
@@ -139,6 +140,8 @@ const CreateEstateForm = () => {
   const [selectedCountry, setselectedCountry] = useState("");
   const [selectedState, setselectedState] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -237,9 +240,8 @@ const CreateEstateForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSubmitting(true);
     setError(null);
-    console.log(formData);
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -264,11 +266,14 @@ const CreateEstateForm = () => {
       }
     } catch (error) {
       console.error("Error creating estate:", error);
+      toast.error("Failed to create estate");
       setError(
         error instanceof Error ? error.message : "Failed to create estate",
       );
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
+      toast.success("Estate created successfully");
+      navigate("/estates");
     }
   };
 
@@ -344,7 +349,7 @@ const CreateEstateForm = () => {
                       id="country"
                       value={selectedCountry}
                       onChange={(e) => setselectedCountry(e.target.value)}
-                      className="bg-transparent w-full"
+                      className="bg-transparent w-full outline-none"
                       required
                     >
                       <option value="">Select a country</option>
@@ -368,7 +373,7 @@ const CreateEstateForm = () => {
                       id="state"
                       value={selectedState}
                       onChange={(e) => setselectedState(e.target.value)}
-                      className="w-full bg-transparent"
+                      className="w-full bg-transparent outline-none"
                       disabled={!selectedCountry || isLoading}
                       required
                     >
@@ -394,7 +399,7 @@ const CreateEstateForm = () => {
                       name="cityId"
                       value={formData.cityId}
                       onChange={handleinputChange}
-                      className="w-full bg-transparent"
+                      className="w-full bg-transparent outline-none"
                       disabled={!selectedState || isLoading}
                       required
                     >
@@ -472,7 +477,7 @@ const CreateEstateForm = () => {
                       name="completionStatus"
                       value={formData.completionStatus}
                       onChange={handleinputChange}
-                      className="w-full bg-transparent"
+                      className="w-full bg-transparent outline-none"
                       required
                     >
                       <option value="">Select status</option>
@@ -619,23 +624,23 @@ const CreateEstateForm = () => {
               </div>
 
               {/* Form Actions */}
-              <div className="py-6 border-t border-gray-200 flex justify-center space-x-4 fixed bottom-0 w-full left-0 bg-[#F0F0F0]">
+              <div className="py-6 md:ml-20 border-t border-gray-200 flex justify-center space-x-4 fixed bottom-0 w-full left-0 bg-[#F0F0F0]">
                 <button
                   type="button"
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   className="px-6 bg-white text-primary border border-primary py-2 rounded-full font-semibold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   className="px-6 bg-primary text-white py-2 rounded-full font-semibold border border-primary"
                 >
-                  {isLoading ? (
+                  {isSubmitting ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Creating...
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin inline-block" />
+                      <span>Creating...</span>
                     </>
                   ) : (
                     "Create Estate"

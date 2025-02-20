@@ -3,10 +3,12 @@ import Login from "./components/Login";
 import EstateManagement from "./components/EstateManagement";
 import CreateEstateForm from "@/components/CreateEstateForm.tsx";
 import EstatePage from "@/components/EstatePage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <Router>
+      <Toaster />
       <div className="min-h-screen bg-white">
         <Routes>
           <Route path="/" element={<Login />} />

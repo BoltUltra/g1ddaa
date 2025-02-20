@@ -15,6 +15,7 @@ import { GoPlay } from "react-icons/go";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 import EstateCard from "@/components/EstateCard.tsx";
+import { BsHouseDoor, BsHouses } from "react-icons/bs";
 
 interface Estate {
   id: string;
@@ -85,110 +86,51 @@ const EstateManagement = () => {
 
   return (
     <Layout>
-      <div className="md:flex hidden items-center justify-between px-4 py-5 border-b">
-        <div className="flex items-center space-x-4">
-          <HistoryNavigation />
-          <h4 className="milik text-2xl font-bold">My Properties</h4>
-        </div>
-        <div className="flex items-center space-x-2 rounded-full bg-[#F0F0F0] px-3 py-1">
-          <MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search estates..."
-            className="w-64 py-2 bg-transparent outline-none font-light text-sm"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-        <div className="flex items-center space-x-8">
-          <div>
-            <div className="relative">
-              <button
-                onClick={howItWorks}
-                className="flex items-center justify-between text-primary bg-[#F0F0F0] rounded-full px-3 py-2 cursor-pointer space-x-3 font-bold"
-              >
-                <LuMonitorPlay />
-                <span className="text-sm">How It Works</span>
-                <IoMdArrowDropdown />
-              </button>
-              {display && (
-                <div className="absolute top-10 right-0 border bg-white shadow-lg p-4 rounded-lg flex flex-col gap-3 mt-3">
-                  <a
-                    href="/"
-                    className="flex items-center space-x-3 whitespace-nowrap"
-                  >
-                    <SlDirections />
-                    <span>Product Tour & Guide</span>
-                  </a>{" "}
-                  <a href="/" className="flex items-center space-x-3">
-                    <GoPlay />
-                    <span>Video Tutorial</span>
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="space-y-5 px-4 py-5 border-b md:block hidden">
+        <div className="md:flex hidden items-center justify-between">
           <div className="flex items-center space-x-4">
-            <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
-              <FaRegBell />
-            </button>
-            <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
-              <LuClock2 />
-            </button>
-            <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
-              <RiShareForwardLine />
-            </button>
+            <HistoryNavigation />
+            <h4 className="milik text-2xl font-bold">My Properties</h4>
           </div>
-        </div>
-      </div>
-      <div className="md:hidden flex flex-col md:flex-row items-center justify-between px-4 py-5 pt-0 border-b">
-        <div className="flex items-center space-x-4 w-full md:w-auto mb-4 md:mb-0">
-          <HistoryNavigation />
-          <h4 className="milik text-xl md:text-2xl font-bold">My Properties</h4>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 w-full md:w-auto">
-          <div className="flex items-center space-x-2 rounded-full bg-[#F0F0F0] px-3 py-1 w-full md:w-auto">
+          <div className="flex items-center space-x-2 rounded-full bg-[#F0F0F0] px-3 py-1">
             <MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />
             <input
               type="text"
               placeholder="Search estates..."
-              className="w-full md:w-64 py-2 bg-transparent outline-none font-light text-sm"
+              className="w-64 py-2 bg-transparent outline-none font-light text-sm"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-
-          <div className="flex items-center w-full md:w-auto space-x-4 md:space-x-8 justify-end">
-            <div className="relative">
-              <button
-                onClick={howItWorks}
-                className="flex items-center justify-between text-primary bg-[#F0F0F0] rounded-full px-3 py-2 cursor-pointer space-x-3 font-bold text-sm md:text-base"
-              >
-                <LuMonitorPlay className="hidden md:inline" />
-                <span>How It Works</span>
-                <IoMdArrowDropdown />
-              </button>
-              {display && (
-                <div className="absolute top-10 right-0 border bg-white shadow-lg p-4 rounded-lg flex flex-col gap-3 mt-3 z-10">
-                  <a
-                    href="/"
-                    className="flex items-center space-x-3 whitespace-nowrap text-sm md:text-base"
-                  >
-                    <SlDirections />
-                    <span>Product Tour & Guide</span>
-                  </a>
-                  <a
-                    href="/"
-                    className="flex items-center space-x-3 text-sm md:text-base"
-                  >
-                    <GoPlay />
-                    <span>Video Tutorial</span>
-                  </a>
-                </div>
-              )}
+          <div className="flex items-center space-x-8">
+            <div>
+              <div className="relative">
+                <button
+                  onClick={howItWorks}
+                  className="flex items-center justify-between text-primary bg-[#F0F0F0] rounded-full px-3 py-2 cursor-pointer space-x-3 font-bold"
+                >
+                  <LuMonitorPlay />
+                  <span className="text-sm">How It Works</span>
+                  <IoMdArrowDropdown />
+                </button>
+                {display && (
+                  <div className="absolute top-10 right-0 border bg-white shadow-lg p-4 rounded-lg flex flex-col gap-3 mt-3">
+                    <a
+                      href="/"
+                      className="flex items-center space-x-3 whitespace-nowrap"
+                    >
+                      <SlDirections />
+                      <span>Product Tour & Guide</span>
+                    </a>{" "}
+                    <a href="/" className="flex items-center space-x-3">
+                      <GoPlay />
+                      <span>Video Tutorial</span>
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="flex items-center space-x-2 md:space-x-4">
+            <div className="flex items-center space-x-4">
               <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
                 <FaRegBell />
               </button>
@@ -200,6 +142,102 @@ const EstateManagement = () => {
               </button>
             </div>
           </div>
+        </div>
+        <div className="flex items-center space-x-5 uppercase text-sm">
+          <div className="flex items-center space-x-3">
+            <span className="h-10 w-10 bg-[#FAFFFA] border border-[#F0F0F0] rounded-full flex items-center justify-center text-primary">
+              <BsHouses />
+            </span>
+            <span>{estateNumber} Estates</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <span className="h-10 w-10 bg-[#FAFFFA] border border-[#F0F0F0] rounded-full flex items-center justify-center text-primary">
+              <BsHouseDoor />
+            </span>
+            <span>5 Houses</span>
+          </div>
+          <div className="h-2 w-2 bg-gray-400  rounded-full"></div>
+          <p>7 units</p>
+        </div>
+      </div>
+      <div className="space-y-5 px-4 py-5 border-b md:hidden pt-0">
+        <div className="md:hidden flex flex-col md:flex-row items-center justify-between pt-0">
+          <div className="flex items-center space-x-4 w-full md:w-auto mb-4 md:mb-0">
+            <HistoryNavigation />
+            <h4 className="milik text-xl md:text-2xl font-bold">
+              My Properties
+            </h4>
+          </div>
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 w-full md:w-auto">
+            <div className="flex items-center space-x-2 rounded-full bg-[#F0F0F0] px-3 py-1 w-full md:w-auto">
+              <MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search estates..."
+                className="w-full md:w-64 py-2 bg-transparent outline-none font-light text-sm"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+
+            <div className="flex items-center w-full md:w-auto space-x-4 md:space-x-8 justify-end">
+              <div className="relative">
+                <button
+                  onClick={howItWorks}
+                  className="flex items-center justify-between text-primary bg-[#F0F0F0] rounded-full px-3 py-2 cursor-pointer space-x-3 font-bold text-sm md:text-base"
+                >
+                  <LuMonitorPlay className="hidden md:inline" />
+                  <span>How It Works</span>
+                  <IoMdArrowDropdown />
+                </button>
+                {display && (
+                  <div className="absolute top-10 right-0 border bg-white shadow-lg p-4 rounded-lg flex flex-col gap-3 mt-3 z-10">
+                    <a
+                      href="/"
+                      className="flex items-center space-x-3 whitespace-nowrap text-sm md:text-base"
+                    >
+                      <SlDirections />
+                      <span>Product Tour & Guide</span>
+                    </a>
+                    <a
+                      href="/"
+                      className="flex items-center space-x-3 text-sm md:text-base"
+                    >
+                      <GoPlay />
+                      <span>Video Tutorial</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center space-x-2 md:space-x-4">
+                <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
+                  <FaRegBell />
+                </button>
+                <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
+                  <LuClock2 />
+                </button>
+                <button className="h-8 w-8 rounded-full flex items-center justify-center bg-[#F0F0F0] text-primary">
+                  <RiShareForwardLine />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center space-x-5 uppercase text-xs">
+          <div className="flex items-center space-x-3">
+            <span className="h-10 w-10 bg-[#FAFFFA] border border-[#F0F0F0] rounded-full flex items-center justify-center text-primary">
+              <BsHouses />
+            </span>
+            <span>{estateNumber} Estates</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <span className="h-10 w-10 bg-[#FAFFFA] border border-[#F0F0F0] rounded-full flex items-center justify-center text-primary">
+              <BsHouseDoor />
+            </span>
+            <span>5 Houses</span>
+          </div>
+          <div className="h-2 w-2 bg-gray-400  rounded-full"></div>
+          <p>7 units</p>
         </div>
       </div>
       <div className="mx-auto px-4 py-8 mt-10">

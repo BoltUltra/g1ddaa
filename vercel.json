@@ -1,7 +1,5 @@
 {
-  "build": {
-    "env": {
-      "ESLINT_NO_DEV_ERRORS": "true"
-    }
-  }
+  "rewrites": [
+    {"source": "/(.*)", "destination": "/"}
+  ]
 }

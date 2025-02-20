@@ -31,7 +31,7 @@ const EstateCard = ({ estate, navigate }: { estate: any; navigate: any }) => {
       </div>
       <div className="relative">
         <div
-          className="text-center pt-4 px-5"
+          className="text-center pt-4 px-5 h-24 overflow-hidden"
           onClick={() => navigate(`/estate/${estate.id}`)}
         >
           <h2 className="text-xl font-semibold mb-2">{estate.name}</h2>

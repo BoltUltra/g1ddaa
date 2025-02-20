@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, Mail, Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,6 +27,7 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
+        toast.success("Login successful");
         localStorage.setItem("token", data.value.value.token);
         navigate("/estates");
       } else {

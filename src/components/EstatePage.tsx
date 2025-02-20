@@ -14,6 +14,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import { LuQrCode } from "react-icons/lu";
 import { RiShareForwardLine } from "react-icons/ri";
+import toast from "react-hot-toast";
 
 interface Estate {
   features: any;
@@ -81,6 +82,7 @@ const EstatePage = () => {
       }
     } catch (error) {
       setError("Error fetching estate details. Please try again.");
+      toast.error("Error fetching estate details. Please try again.");
       console.error("Error fetching estate details:", error);
     } finally {
       setIsLoading(false);
@@ -254,7 +256,7 @@ const EstatePage = () => {
                       </div>
                     )}
                   </div>
-                  <div className="mt-10">
+                  <div className="mt-10 md:px-5">
                     <div className="flex items-center space-x-2">
                       <h3 className="milik text-2xl whitespace-nowrap">
                         Estate Details
@@ -297,7 +299,7 @@ const EstatePage = () => {
                         <a
                           href={estate?.videoUrl || "#"}
                           target={estate?.videoUrl ? "_blank" : "_self"}
-                          className={"underline"}
+                          className={"underline whitespace-pre-line"}
                           aria-disabled={!estate?.videoUrl}
                         >
                           {estate.videoUrl || "Null"}

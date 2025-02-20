@@ -143,7 +143,7 @@ const TestimonialSlider = () => {
               drag="y" // Changed from "x" to "y"
               dragConstraints={{ top: 0, bottom: 0 }} // Changed from left/right to top/bottom
               dragElastic={1}
-              onDragEnd={(e, { offset, velocity }) => {
+              onDragEnd={(_e, { offset, velocity }) => {
                 const swipe = swipePower(offset.y, velocity.y); // Changed from offset.x to offset.y
 
                 if (swipe < -swipeConfidenceThreshold) {

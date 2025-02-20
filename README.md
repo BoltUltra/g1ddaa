@@ -1,50 +1,111 @@
-# React + TypeScript + Vite
+# Getting Started Guide - GIDDAA Interview Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
 
-Currently, two official plugins are available:
+- Node.js (v18.x or later)
+- npm (v9.x or later)
+- macOS/Windows/Linux environment
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+1. Clone the repository:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+git clone <repository-url>
+cd GIDDAA/interview
+```
 
-- Configure the top-level `parserOptions` property like this:
+2. Install dependencies:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+```bash
+npm install
+```
+
+## Available Scripts
+
+### Development Server
+
+```bash
+npm run dev
+```
+
+The development server will start at `http://localhost:5173`
+
+### Production Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Linting and Type Checking
+
+```bash
+npm run lint
+npm run type-check
+```
+
+## Project Structure
+
+```plaintext
+interview/
+├── src/
+│   ├── components/
+│   │   └── ui/
+│   ├── lib/
+│   ├── styles/
+│   │   └── globals.css
+│   ├── assets/
+│   └── App.tsx
+├── public/
+├── vite.config.ts
+├── tsconfig.json
+├── tailwind.config.js
+└── package.json
+```
+
+## Configuration Files
+
+### Vite Configuration
+
+```typescript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
-})
+});
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### TypeScript Configuration
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
 ```
+
+## Development Tools
+
+- Webstorm Extensions Recommended:
+  - ESLint
+  - Prettier
+  - Tailwind CSS IntelliSense
+  - TypeScript Vue Plugin (Volar)

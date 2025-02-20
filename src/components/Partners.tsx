@@ -80,7 +80,7 @@ const PartnersSection = () => {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => setActiveTab(tab as keyof typeof partnersByCategory)}
             className={`px-6 py-2 rounded-full text-sm transition-all duration-200 whitespace-nowrap
               ${
                 activeTab === tab
